@@ -1,4 +1,5 @@
 import { ChangeEvent, FormEvent, FunctionComponent, useCallback, useEffect, useState } from 'react'
+import { Card } from 'react-bootstrap'
 import login from '../../redux/ocAuth/login'
 import { useOcDispatch, useOcSelector } from '../../redux/ocStore'
 
@@ -55,45 +56,47 @@ const OcLoginForm: FunctionComponent<OcLoginFormProps> = ({
 
   return (
     <form name="ocLoginForm" onSubmit={handleSubmit}>
-      <h1>{title}</h1>
-      {error && <p>{error.message}</p>}
-      <label htmlFor="identifier">
-        Username
-        <input
-          type="text"
-          id="identifier"
-          name="identifier"
-          placeholder="Enter username"
-          value={formValues.identifier}
-          onChange={handleInputChange('identifier')}
-          required
-        />
-      </label>
-      <label htmlFor="password">
-        Password
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Enter password"
-          value={formValues.password}
-          onChange={handleInputChange('password')}
-          required
-        />
-      </label>
-      <label htmlFor="remember">
-        <input
-          type="checkbox"
-          id="remember"
-          name="remember"
-          checked={formValues.remember}
-          onChange={handleCheckboxChange('remember')}
-        />
-        Keep me logged in
-      </label>
-      <button disabled={loading} type="submit">
-        Submit
-      </button>
+      <Card>
+        <h1>{title}</h1>
+        {error && <p>{error.message}</p>}
+        <label htmlFor="identifier">
+          Username
+          <input
+            type="text"
+            id="identifier"
+            name="identifier"
+            placeholder="Enter username"
+            value={formValues.identifier}
+            onChange={handleInputChange('identifier')}
+            required
+          />
+        </label>
+        <label htmlFor="password">
+          Password
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter password"
+            value={formValues.password}
+            onChange={handleInputChange('password')}
+            required
+          />
+        </label>
+        <label htmlFor="remember">
+          <input
+            type="checkbox"
+            id="remember"
+            name="remember"
+            checked={formValues.remember}
+            onChange={handleCheckboxChange('remember')}
+          />
+          Keep me logged in
+        </label>
+        <button disabled={loading} type="submit">
+          Submit
+        </button>
+      </Card>
     </form>
   )
 }
