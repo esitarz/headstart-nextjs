@@ -1,6 +1,9 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Image from 'next/image'
 import { FunctionComponent } from 'react'
+import { Nav, Navbar, NavDropdown, Container, Button } from 'react-bootstrap'
+import classes from '*.module.css'
 import logout from '../ordercloud/redux/ocAuth/logout'
 import { useOcDispatch, useOcSelector } from '../ordercloud/redux/ocStore'
 
@@ -18,32 +21,45 @@ const Layout: FunctionComponent = ({ children }) => {
     <>
       <Head>
         <title>React Headstart</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/cool-doge.gif" type="image/gif" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <header>
-        <h1>React Headstart</h1>
-        <p>{`Cart Count ${lineItemCount}`}</p>
-        <nav>
-          <Link href="/">
-            <a>Home</a>
-          </Link>
-          <Link href="/cart">
-            <a>Cart</a>
-          </Link>
-          <Link href="/products">
-            <a>Products</a>
-          </Link>
-          {isAnonymous ? (
-            <Link href="/login">
-              <a>Login</a>
-            </Link>
-          ) : (
-            <button type="button" disabled={loading} onClick={() => dispatch(logout())}>
-              Logout
-            </button>
-          )}
-          {!isAnonymous && user && <p>{`${user.FirstName} ${user.LastName}`}</p>}
-        </nav>
+        <Navbar expand="lg">
+          <Container fluid>
+            <Navbar.Brand href="#home" className="position-relative">
+              <Image
+                className="object-fit-contain"
+                src="/headstart.png"
+                alt="React Headstart"
+                layout="responsive"
+                height="100%"
+                width="100%"
+              />
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav" className="justify-content-between">
+              <Nav className="mr-auto">
+                <Link href="/" passHref>
+                  <Nav.Link>Home</Nav.Link>
+                </Link>
+                <Link href="/products" passHref>
+                  <Nav.Link>Products</Nav.Link>
+                </Link>
+              </Nav>
+              {isAnonymous ? (
+                <Link href="/login" passHref>
+                  <Button className="btn btn-primary">Login</Button>
+                </Link>
+              ) : (
+                <button type="button" disabled={loading} onClick={() => dispatch(logout())}>
+                  Logout
+                </button>
+              )}
+              {!isAnonymous && user && <p>{`${user.FirstName} ${user.LastName}`}</p>}
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
       </header>
       <main>{children}</main>
     </>
