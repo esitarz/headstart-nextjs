@@ -28,14 +28,7 @@ const Layout: FunctionComponent = ({ children }) => {
         <Navbar expand="lg">
           <Container fluid>
             <Navbar.Brand href="#home" className="position-relative">
-              <Image
-                className="object-fit-contain"
-                src="/headstart.png"
-                alt="React Headstart"
-                layout="responsive"
-                height="100%"
-                width="100%"
-              />
+              <Image src="/headstart.png" alt="React Headstart" height="auto" width={150} />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav" className="justify-content-between">
